@@ -1,4 +1,5 @@
 from domain.character.died import Died
+from domain.character.recovered import Recovered
 from domain.character.took_damage import TookDamage
 from domain.fight.ended import Ended as FightEnded
 from domain.game.ended import Ended as GameEnded
@@ -74,3 +75,7 @@ class GameListener:
     @staticmethod
     def character_died(event: Died) -> None:
         print(GameListener.WARNING + f"The {event.character.character_type} died. RIP!")
+
+    @staticmethod
+    def character_recovered(event: Recovered):
+        print(GameListener.GREEN + f"The {event.character.character_type} recovered {event.value}")

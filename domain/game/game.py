@@ -41,11 +41,12 @@ class Game:
         while fight.is_not_over():
             fight.do_battle()
             fight.next_turn()
+            self.hero.regenerate_resource()
         self.fights += 1
         self.rounds = fight.get_rounds()
 
     def recover(self) -> None:
-        pass
+        self.hero.recover(self.action)
 
     def create_enemy(self) -> None:
         self.enemy = self.character_generator.new_enemy()

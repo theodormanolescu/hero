@@ -6,7 +6,7 @@ from domain.character.character import Character
 from domain.character.took_damage import TookDamage
 
 
-class MyTestCase(unittest.TestCase):
+class CharacterTestCase(unittest.TestCase):
     def test_that_it_can_take_damage(self):
         dispatcher = EventDispatcher()
 

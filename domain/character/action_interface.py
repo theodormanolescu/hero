@@ -1,11 +1,15 @@
-from abc import abstractmethod
-
-
 class ActionInterface:
-    @abstractmethod
     def take_action(self, character: 'Character') -> str:
-        pass
+        """
+        :type character: domain.character.character.Character
+        """
+        raise NotImplemented()
 
-    @abstractmethod
     def react(self, character: 'Character') -> str:
-        pass
+        """
+        :type character: domain.character.character.Character
+        """
+        raise NotImplemented()
+
+    def rest(self) -> str:
+        raise NotImplemented()

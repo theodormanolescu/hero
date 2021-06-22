@@ -1,40 +1,30 @@
-from abc import abstractmethod
-
-
 class StatsInterface:
     HERO = 'hero'
     ENEMY = 'enemy'
 
-    @abstractmethod
     def set_type(self, character_type: str) -> None:
-        pass
+        raise NotImplemented()
 
-    @abstractmethod
     def get_strength(self) -> int:
         """Will return strength."""
-        pass
+        raise NotImplemented()
 
-    @abstractmethod
     def get_defence(self) -> int:
         """Will return defence."""
-        pass
+        raise NotImplemented()
 
-    @abstractmethod
     def get_speed(self) -> int:
         """Will return speed."""
-        pass
+        raise NotImplemented()
 
-    @abstractmethod
     def get_luck(self) -> int:
         """Will return luck."""
-        pass
+        raise NotImplemented()
 
-    @abstractmethod
     def get_health(self) -> int:
         """Will return health."""
         pass
 
-    @abstractmethod
     def get_intelligence(self) -> int:
         """Will return intelligence."""
-        pass
+        raise NotImplemented()

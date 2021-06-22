@@ -15,7 +15,8 @@ class Fight:
         self.dispatcher: EventDispatcher = dispatcher
         self.rounds: int = 0
         self._is_not_over = True
-    # todo: use teams green/blue to allow multiple characters
+
+    # todo: use teams green/blue teams to allow multiple characters
 
     def start(self):
         self._get_action_order()
@@ -54,7 +55,5 @@ class Fight:
         self.list.sort()
 
     def _create_action_stack(self) -> None:
-        for iteration in range(Fight.STACK_ITERATIONS):
-            for index in range(len(self.list)):
-                self.stack.append(index)
+        [self.stack.append(index) for index in range(len(self.list)) for iteration in range(Fight.STACK_ITERATIONS)]
         self.stack.reverse()

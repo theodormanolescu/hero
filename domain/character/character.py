@@ -1,6 +1,7 @@
 from application.event_dispatcher import EventDispatcher
 from domain.character.action_interface import ActionInterface
 from domain.character.died import Died
+from domain.character.recovered import Recovered
 from domain.character.stats_interface import StatsInterface
 from domain.character.took_damage import TookDamage
 from domain.skill.reacted import Reacted
@@ -27,7 +28,7 @@ class Character:
         self.dispatcher: EventDispatcher = dispatcher
 
     def regenerate_resource(self) -> None:
-        self.resource = min(self.resource + 10, self.max_resource)
+        self.resource = min(self.resource + 1, self.max_resource)
 
     def act(self, action: ActionInterface, another_character: 'Character') -> None:
         self.try_to_take_action(action, another_character)
@@ -38,6 +39,15 @@ class Character:
         self.take_damage(
             react_skill.process_value(skill.process_value(self.defence))
         )
+
+    def recover(self, action: ActionInterface):
+        heal = self.skills[action.rest()]
+        if self.resource - heal.cost <= 0:
+            self.dispatcher.dispatch(Recovered(self, 0))
+            return
+        self.health = min(self.health + heal.value, self.max_health)
+        self.resource = max(self.resource - heal.cost, 0)
+        self.dispatcher.dispatch(Recovered(self, heal.value))
 
     def take_damage(self, value):
         self.dispatcher.dispatch(TookDamage(self, value))

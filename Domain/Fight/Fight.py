@@ -1,9 +1,9 @@
 
 from Application.EventDispatcher import EventDispatcher
+from Domain.Character.ActionInterface import ActionInterface
 from Domain.Character.Character import Character
 from Domain.Fight.FightEnded import FightEnded
 from Domain.Fight.FightStarted import FightStarted
-from Domain.Character.ActionInterface import ActionInterface
 
 STACK_ITERATIONS = 5
 

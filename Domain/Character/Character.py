@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 from Application import EventDispatcher
-from Domain.Character import TookDamage
 from Domain.Character import CharacterDied
+from Domain.Character import TookDamage
+from Domain.Character.ActionInterface import ActionInterface
+from Domain.Character.StatsInterface import StatsInterface
 from Domain.Skill.ReactedSkill import ReactedSkill
 from Domain.Skill.Skill import Skill
 from Domain.Skill.SkillUsed import SkillUsed
-from Domain.Character.ActionInterface import ActionInterface
-from Domain.Character.StatsInterface import StatsInterface
 
 
 class Character:

@@ -6,7 +6,7 @@ class StatsInterface:
     ENEMY = 'enemy'
 
     @abstractmethod
-    def set_type(self, character_type: str):
+    def set_type(self, character_type: str) -> None:
         pass
 
     @abstractmethod

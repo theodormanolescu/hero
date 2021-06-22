@@ -1,12 +1,12 @@
 import random
 
+from Domain.Character.ActionInterface import ActionInterface
 from Domain.Character.Character import Character
 from Domain.Character.StatsInterface import StatsInterface
 from Domain.Skill.BasicAttack import BasicAttack
 from Domain.Skill.MagicShield import MagicShield
 from Domain.Skill.NoReaction import NoReaction
 from Domain.Skill.RapidStrike import RapidStrike
-from Domain.Character.ActionInterface import ActionInterface
 
 
 class RandomActionGenerator(ActionInterface):

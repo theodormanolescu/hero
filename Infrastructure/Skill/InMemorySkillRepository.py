@@ -4,11 +4,12 @@ from Domain.Skill.BasicAttack import BasicAttack
 from Domain.Skill.MagicShield import MagicShield
 from Domain.Skill.NoReaction import NoReaction
 from Domain.Skill.RapidStrike import RapidStrike
+from Domain.Skill.Skill import Skill
 from Domain.Skill.SkillRepository import SkillRepository
 
 
 class InMemorySkillRepository(SkillRepository):
-    def get_skills_for_character(self, character: Character) -> []:
+    def get_skills_for_character(self, character: Character) -> [Skill]:
         skills = []
         if character.character_type == StatsInterface.HERO:
             skills.append(RapidStrike(character.strength))

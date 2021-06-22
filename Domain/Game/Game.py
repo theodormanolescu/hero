@@ -1,4 +1,5 @@
 from Application.EventDispatcher import EventDispatcher
+from Domain.Character.ActionInterface import ActionInterface
 from Domain.Character.Character import Character
 from Domain.Character.CharacterCreation import CharacterCreation
 from Domain.Fight.Fight import Fight
@@ -6,7 +7,6 @@ from Domain.Game.EnemyCreated import EnemyCreated
 from Domain.Game.GameEnded import GameEnded
 from Domain.Game.GameStarted import GameStarted
 from Domain.Game.HeroCreated import HeroCreated
-from Domain.Character.ActionInterface import ActionInterface
 
 
 class Game:
@@ -19,18 +19,18 @@ class Game:
         self.fights = 0
         self.rounds = 0
 
-    def create_hero(self):
+    def create_hero(self) -> None:
         self.hero = self.character_generator.new_hero()
         self.dispatcher.dispatch(HeroCreated(self.hero))
 
-    def start_game(self, difficulty_level=1):
+    def start_game(self, difficulty_level=1) -> None:
         self.dispatcher.dispatch(GameStarted(difficulty_level))
         self.create_hero()
 
     def is_not_over(self) -> bool:
         return self.hero.alive
 
-    def start_new_fight(self):
+    def start_new_fight(self) -> None:
         self.rounds = 0
         fight = Fight(
             dispatcher=self.dispatcher,
@@ -44,10 +44,10 @@ class Game:
         self.fights += 1
         self.rounds = fight.get_rounds()
 
-    def recover(self):
+    def recover(self) -> None:
         pass
 
-    def create_enemy(self):
+    def create_enemy(self) -> None:
         self.enemy = self.character_generator.new_enemy()
         self.dispatcher.dispatch(EnemyCreated(self.enemy))
 

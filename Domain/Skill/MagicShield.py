@@ -7,7 +7,5 @@ class MagicShield(Skill):
     def __init__(self):
         super().__init__()
 
-    def process_value(self, modifier: int) -> int:
-        if modifier > 0:
-            modifier = modifier / 2
-        return modifier
+    def process_value(self, damage: int) -> int:
+        return round(damage/2) if damage > 0 else damage

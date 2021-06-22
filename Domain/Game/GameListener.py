@@ -10,11 +10,19 @@ from Domain.Skill.SkillUsed import SkillUsed
 
 
 class GameListener:
-    def game_started(self, event: GameStarted):
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    WHITE = '\033[0m'
+
+    @staticmethod
+    def game_started(event: GameStarted):
         print(f"New game started with {event.difficulty_level} difficulty")
 
-    def hero_created(self, event: HeroCreated):
-        print(f"""
+    @staticmethod
+    def hero_created(event: HeroCreated):
+        print(GameListener.GREEN + f"""
         New hero was created with:
             {event.character.strength} strength,
             {event.character.defence} defence,
@@ -24,8 +32,9 @@ class GameListener:
             {event.character.luck} luck
         """)
 
-    def enemy_created(self, event: EnemyCreated):
-        print(f"""
+    @staticmethod
+    def enemy_created(event: EnemyCreated):
+        print(GameListener.WHITE + f"""
         New enemy was created with:
             {event.character.strength} strength,
             {event.character.defence} defence,
@@ -35,25 +44,33 @@ class GameListener:
             {event.character.luck} luck
         """)
 
-    def game_ended(self, event: GameEnded):
-        print(f"""
+    @staticmethod
+    def game_ended(event: GameEnded):
+        print(GameListener.FAIL
+              + f"""
         The game has ended.
         Our hero had {event.fights} fights
         And lasted {event.rounds} rounds in the last fight
         """)
 
-    def fight_ended(self, event: FightEnded):
+    @staticmethod
+    def fight_ended(event: FightEnded):
         fighter = list(filter(lambda character: character.alive, event.fighters)).pop()
-        print(f"The fight has ended. {fighter.character_type} won the fight")
+        print(GameListener.WARNING + f"The fight has ended. {fighter.character_type} won the fight")
 
-    def skill_used(self, event: SkillUsed):
-        print(f"The {event.attacker.character_type} used {event.skill.NAME} on {event.defender.character_type}")
+    @staticmethod
+    def skill_used(event: SkillUsed):
+        print(GameListener.WHITE
+              + f"The {event.attacker.character_type} used {event.skill.get_name()} on {event.defender.character_type}")
 
-    def took_damage(self, event: TookDamage):
-        print(f"The {event.character.character_type} took {event.value} damage")
+    @staticmethod
+    def took_damage(event: TookDamage):
+        print(GameListener.WHITE + f"The {event.character.character_type} took {event.value} damage")
 
-    def reacted_skill(self, event: ReactedSkill):
-        print(f"The {event.character.character_type} reacted with {event.skill.NAME}")
+    @staticmethod
+    def reacted_skill(event: ReactedSkill):
+        print(GameListener.WHITE + f"The {event.character.character_type} reacted with {event.skill.get_name()}")
 
-    def character_died(self, event: CharacterDied):
-        print(f"The {event.character.character_type} died. RIP!")
+    @staticmethod
+    def character_died(event: CharacterDied):
+        print(GameListener.WARNING + f"The {event.character.character_type} died. RIP!")

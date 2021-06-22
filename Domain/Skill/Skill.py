@@ -9,5 +9,9 @@ class Skill:
         self.hits = hits
 
     @abstractmethod
-    def process_value(self, **kwargs):
+    def get_name(self) -> str:
+        pass
+
+    @abstractmethod
+    def process_value(self, *args):
         pass

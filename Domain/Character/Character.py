@@ -35,10 +35,11 @@ class Character:
         self.try_to_take_action(action, another_character)
 
     def react(self, action: ActionInterface, skill: Skill) -> None:
-        damage = skill.process_value(defence=self.defence)
         react_skill = self.skills[action.react(self)]
         self.dispatcher.dispatch(ReactedSkill(self, react_skill))
-        self.take_damage(react_skill.process_value(damage))
+        self.take_damage(
+            react_skill.process_value(skill.process_value(self.defence))
+        )
 
     def take_damage(self, value):
         self.dispatcher.dispatch(TookDamage.TookDamage(self, value))

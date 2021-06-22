@@ -1,3 +1,4 @@
+from Domain.Character.CharacterDied import CharacterDied
 from Domain.Character.TookDamage import TookDamage
 from Domain.Fight.FightEnded import FightEnded
 from Domain.Game.EnemyCreated import EnemyCreated
@@ -43,22 +44,16 @@ class GameListener:
 
     def fight_ended(self, event: FightEnded):
         fighter = list(filter(lambda character: character.alive, event.fighters)).pop()
-        print(f"""
-        The fight has ended.
-        {fighter.character_type} won the fight
-        """)
+        print(f"The fight has ended. {fighter.character_type} won the fight")
 
     def skill_used(self, event: SkillUsed):
-        print(f"""
-        The {event.attacker.character_type} used {event.skill.NAME} on {event.defender.character_type}
-        """)
+        print(f"The {event.attacker.character_type} used {event.skill.NAME} on {event.defender.character_type}")
 
     def took_damage(self, event: TookDamage):
-        print(f"""
-        The {event.character.character_type} took {event.value} damage
-        """)
+        print(f"The {event.character.character_type} took {event.value} damage")
 
     def reacted_skill(self, event: ReactedSkill):
-        print(f"""
-        The {event.character.character_type} reacted with {event.skill.NAME} 
-        """)
+        print(f"The {event.character.character_type} reacted with {event.skill.NAME}")
+
+    def character_died(self, event: CharacterDied):
+        print(f"The {event.character.character_type} died. RIP!")

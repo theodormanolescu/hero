@@ -6,7 +6,7 @@ from Domain.Game.EnemyCreated import EnemyCreated
 from Domain.Game.GameEnded import GameEnded
 from Domain.Game.GameStarted import GameStarted
 from Domain.Game.HeroCreated import HeroCreated
-from Input.ActionInterface import ActionInterface
+from Domain.Character.ActionInterface import ActionInterface
 
 
 class Game:

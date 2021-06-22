@@ -2,10 +2,11 @@ from __future__ import annotations
 
 from Application import EventDispatcher
 from Domain.Character import TookDamage
+from Domain.Character import CharacterDied
 from Domain.Skill.ReactedSkill import ReactedSkill
 from Domain.Skill.Skill import Skill
 from Domain.Skill.SkillUsed import SkillUsed
-from Input.ActionInterface import ActionInterface
+from Domain.Character.ActionInterface import ActionInterface
 from Domain.Character.StatsInterface import StatsInterface
 
 
@@ -43,7 +44,7 @@ class Character:
         self.dispatcher.dispatch(TookDamage.TookDamage(self, value))
         self.health = max(self.health - value, 0)
         if self.health == 0:
-            # @todo fire event
+            self.dispatcher.dispatch(CharacterDied.CharacterDied(self))
             self.alive = False
 
     def add_skill(self, name, skill: Skill) -> None:

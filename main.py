@@ -1,10 +1,10 @@
-from Application.EventDispatcher import EventDispatcher
-from Domain.Character.CharacterCreation import CharacterCreation
-from Domain.Game.Game import Game
-from Infrastructure.Character.InMemoryCharacterRepository import InMemoryCharacterRepository
-from Infrastructure.Skill.InMemorySkillRepository import InMemorySkillRepository
-from Input.RandomActionGenerator import RandomActionGenerator
-from Input.RandomStatsGenerator import RandomStatsGenerator
+from application.event_dispatcher import EventDispatcher
+from domain.character.character_creation import CharacterCreation
+from domain.game.game import Game
+from infrastructrure.character.repository import InMemoryCharacterRepository
+from infrastructrure.skill.repository import InMemorySkillRepository
+from input.random_action_generator import RandomActionGenerator
+from input.random_stats_generator import RandomStatsGenerator
 
 if __name__ == '__main__':
     dispatcher = EventDispatcher()

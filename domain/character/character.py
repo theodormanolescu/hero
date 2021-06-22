@@ -12,7 +12,7 @@ class Character:
     def __init__(self, dispatcher: EventDispatcher, health=1,
                  resource=1, strength=0,
                  defence=0, speed=0,
-                 luck=0, character_type=StatsInterface.ENEMY, ):
+                 luck=0, character_type=StatsInterface.ENEMY):
         self.health = health
         self.max_health = health
         self.resource = resource

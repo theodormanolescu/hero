@@ -16,7 +16,7 @@ class RandomActionGenerator(ActionInterface):
         return BasicAttack.NAME
 
     def react(self, character: Character):
-        if character.character_type == StatsInterface.HERO and RandomActionGenerator.has_chance(60):
+        if character.character_type == StatsInterface.HERO and RandomActionGenerator.has_chance(20):
             return MagicShield.NAME
         return NoReaction.NAME
 
